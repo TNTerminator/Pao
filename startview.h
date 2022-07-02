@@ -10,12 +10,19 @@
 #include <QObject>
 #include "userinputs.h"
 class startview :public QMainWindow{
+
+    Q_OBJECT
+
 public:
     startview();
 
     QLayout* createButtonsLayout();
 public slots:
-    void ChangeChart(int);
+    void createPie();
+    void createLine();
+    void createBar();
+    void createSpline();
+    void createScatter();
 };
 
 

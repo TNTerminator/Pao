@@ -76,19 +76,19 @@ QLayout* startview::createButtonsLayout(){
     QHBoxLayout* buttonsLayout = new QHBoxLayout(DockWidget);
 
     QPushButton *pie_button = new QPushButton("&Pie", DockWidget);
-    connect(pie_button,SIGNAL(clicked(bool)),this,SLOT(ChangeChart(int)));
+    connect(pie_button,SIGNAL(clicked(bool)),this,SLOT(createPie()));
 
     QPushButton *line_button = new QPushButton("&Line", DockWidget);
-    connect(line_button,SIGNAL(clicked(bool)),this,SLOT(ChangeChart(int)));
+    connect(line_button,SIGNAL(clicked(bool)),this,SLOT(createLine()));
 
     QPushButton *bar_button = new QPushButton("&Bar", DockWidget);
-    connect(bar_button,SIGNAL(clicked(bool)),this,SLOT(ChangeChart(int)));
+    connect(bar_button,SIGNAL(clicked(bool)),this,SLOT(createBar()));
 
     QPushButton *spline_button = new QPushButton("&Spline", DockWidget);
-    connect(spline_button,SIGNAL(clicked(bool)),this,SLOT(ChangeChart(int)));
+    connect(spline_button,SIGNAL(clicked(bool)),this,SLOT(createSpline()));
 
     QPushButton *scatter_button = new QPushButton("&Scatter", DockWidget);
-    connect(scatter_button,SIGNAL(clicked(bool)),this,SLOT(ChangeChart(int)));
+    connect(scatter_button,SIGNAL(clicked(bool)),this,SLOT(createScatter()));
 
 
     buttonsLayout->addWidget(pie_button);
@@ -105,36 +105,38 @@ QLayout* startview::createButtonsLayout(){
 
 }
 
-void startview::ChangeChart(int x){
-    switch (x){
+void startview::createPie(){
 
-    case pie:{
-        QLabel *label1 = new QLabel(this);
-        label1->setText("1\n");
-        setCentralWidget(label1);
-        break;}
-    case line:{
-        QLabel *label2 = new QLabel(this);
-        label2->setText("2\n");
-        setCentralWidget(label2);
-        break;}
-    case bar:{
-        QLabel *label3 = new QLabel(this);
-        label3->setText("3\n");
-        setCentralWidget(label3);
-        break;}
-    case spline:{
-        QLabel *label4 = new QLabel(this);
-        label4->setText("4\n");
-        setCentralWidget(label4);
-        break;}
-    case scatter:{
-        QLabel *label5 = new QLabel(this);
-        label5->setText("5\n");
-        setCentralWidget(label5);
-        break;}
-
-    }
+    QLabel *label1 = new QLabel(this);
+    label1->setText("1\n");
+    setCentralWidget(label1);
 
 }
+void startview::createLine(){
 
+    QLabel *label2 = new QLabel(this);
+    label2->setText("2\n");
+    setCentralWidget(label2);
+
+}
+void startview::createBar(){
+
+    QLabel *label3 = new QLabel(this);
+    label3->setText("3\n");
+    setCentralWidget(label3);
+
+}
+void startview::createSpline(){
+
+    QLabel *label4 = new QLabel(this);
+    label4->setText("4\n");
+    setCentralWidget(label4);
+
+}
+void startview::createScatter(){
+
+    QLabel *label5 = new QLabel(this);
+    label5->setText("5\n");
+    setCentralWidget(label5);
+
+}
