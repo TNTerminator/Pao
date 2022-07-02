@@ -18,7 +18,8 @@ SOURCES += \
     scatterchart.cpp \
     splinechart.cpp \
     startview.cpp \
-    view.cpp
+    view.cpp \
+    userinputs.cpp
 
 HEADERS += \
     barchart.h \
@@ -29,7 +30,8 @@ HEADERS += \
     scatterchart.h \
     splinechart.h \
     startview.h \
-    view.h
+    view.h \
+    userinputs.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
