@@ -6,13 +6,32 @@ startview::startview() {
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
 
+    mainLayout->addLayout(createVerticalLayout());
     mainLayout->addLayout(createButtonsLayout());
 
     setLayout(mainLayout);
-    resize(QSize(1024,768));
+    resize(QSize(1024,1024));
 
 }
 
+void startview::deleteView(){
+    /**if(chart != nullptr){
+        delete chart;
+        chart = nullptr;
+    }
+    if(userIn != nullptr){
+        delete userIn;
+        userIn = nullptr;
+    }
+    if(userActions != nullptr){
+        delete userActions;
+        userActions = nullptr;
+    }
+    if(fileInteraction != nullptr){
+     * delete fileInteraction;
+     * fileInteraction = nullptr;
+    }**/
+}
 
 QLayout* startview::createButtonsLayout(){
 
@@ -69,13 +88,13 @@ QLayout* startview::createButtonsLayout(){
     QDockWidget* dock=new QDockWidget(this);
     dock->setTitleBarWidget(new QWidget());
     dock->setAllowedAreas(Qt::BottomDockWidgetArea);
-    dock->setFixedSize(1024,250);
+    dock->setFixedSize(1024,256);
 
     QWidget* DockWidget = new QWidget(dock);
 
     QHBoxLayout* buttonsLayout = new QHBoxLayout(DockWidget);
 
-    QPushButton *pie_button = new QPushButton("&Pie", DockWidget);
+    QPushButton *pie_button = new QPushButton("&Pie", DockWidget);  
     connect(pie_button,SIGNAL(clicked(bool)),this,SLOT(createPie()));
 
     QPushButton *line_button = new QPushButton("&Line", DockWidget);
@@ -105,11 +124,41 @@ QLayout* startview::createButtonsLayout(){
 
 }
 
-void startview::createPie(){
+QLayout* startview::createVerticalLayout(){
 
+    QDockWidget* dockV=new QDockWidget(this);
+    dockV->setTitleBarWidget(new QWidget());
+    dockV->setAllowedAreas(Qt::LeftDockWidgetArea);
+    dockV->setFixedSize(512,768);
+
+    QWidget* DockWidgetV = new QWidget(dockV);
+    QVBoxLayout* layout=new QVBoxLayout(DockWidgetV);
+
+    userActions=new QWidget(DockWidgetV);
+    QVBoxLayout* VLayout=new QVBoxLayout(userActions);
+    userActions->setLayout(VLayout);
+    //VLayout->setAlignment(Qt::AlignTop);
+
+    layout->addWidget(userActions);
+
+    dockV->setWidget(DockWidgetV);
+    dockV->setFeatures(QDockWidget::NoDockWidgetFeatures);
+    addDockWidget(Qt::LeftDockWidgetArea,dockV);
+
+    return(layout);
+
+}
+
+void startview::userInput(chartTypes type){
+    userIn = new userinputs(type, userActions);
+    userActions->layout()->addWidget(userIn);
+}
+
+void startview::createPie(){
     QLabel *label1 = new QLabel(this);
     label1->setText("1\n");
     setCentralWidget(label1);
+    userInput(pie);
 
 }
 void startview::createLine(){

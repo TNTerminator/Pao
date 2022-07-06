@@ -8,15 +8,27 @@
 #include <QLabel>
 #include <QDockWidget>
 #include <QObject>
+
+#include "basechart.h"
 #include "userinputs.h"
+
 class startview :public QMainWindow{
 
     Q_OBJECT
 
+private:
+
+    baseChart* chart;
+    userinputs* userIn;
+    QWidget* userActions;
+
 public:
     startview();
 
+    void deleteView();
     QLayout* createButtonsLayout();
+    QLayout* createVerticalLayout();
+    void userInput(chartTypes);
 public slots:
     void createPie();
     void createLine();

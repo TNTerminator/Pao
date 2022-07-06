@@ -1,5 +1,7 @@
 QT       += core gui
 
+QT += charts
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -10,6 +12,7 @@ CONFIG += c++11
 
 SOURCES += \
     barchart.cpp \
+    basechart.cpp \
     linechart.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -23,6 +26,7 @@ SOURCES += \
 
 HEADERS += \
     barchart.h \
+    basechart.h \
     linechart.h \
     mainwindow.h \
     model.h \

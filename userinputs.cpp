@@ -1,6 +1,5 @@
 #include "userinputs.h"
 
-userinputs::userinputs()
-{
-
+userinputs::userinputs(chartTypes type, QWidget* parent) {
+    //this->setWindowTitle("Dati");
 }
