@@ -132,7 +132,8 @@ QLayout* startview::createVerticalLayout(){
     dockV->setFixedSize(512,768);
 
     QWidget* DockWidgetV = new QWidget(dockV);
-    QVBoxLayout* layout=new QVBoxLayout(DockWidgetV);
+    //QVBoxLayout* layout=new QVBoxLayout(DockWidgetV);
+    QBoxLayout* layout=new QBoxLayout(QBoxLayout::TopToBottom,DockWidgetV);
 
     userActions=new QWidget(DockWidgetV);
     QVBoxLayout* VLayout=new QVBoxLayout(userActions);
@@ -144,6 +145,17 @@ QLayout* startview::createVerticalLayout(){
     dockV->setWidget(DockWidgetV);
     dockV->setFeatures(QDockWidget::NoDockWidgetFeatures);
     addDockWidget(Qt::LeftDockWidgetArea,dockV);
+    QButtonGroup* saveOpen=new QButtonGroup(dockV);
+    QPushButton *save = new QPushButton("&Save", DockWidgetV);
+    QPushButton *open = new QPushButton("&Open", DockWidgetV);
+    QPushButton *saveas = new QPushButton("&Save as", DockWidgetV);
+   //aggiunto i bottoni, pensavo di sistemarli con la classe di button group che sta nel layout che hai fatto tu di base
+    //ma non si mette nella parte giusta
+    //forse da aggiustare
+    //ci penso domani
+    saveOpen->addButton(save);
+    saveOpen->addButton(open);
+    saveOpen->addButton(saveas);
 
     return(layout);
 

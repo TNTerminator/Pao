@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <QDockWidget>
 #include <QObject>
+#include <QButtonGroup>
 
 #include "basechart.h"
 #include "userinputs.h"
