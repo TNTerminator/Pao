@@ -9,6 +9,8 @@
 #include <QDockWidget>
 #include <QObject>
 #include <QButtonGroup>
+#include <QList>
+#include <QGroupBox>
 
 #include "basechart.h"
 #include "userinputs.h"
@@ -22,6 +24,7 @@ private:
     baseChart* chart;
     userinputs* userIn;
     QWidget* userActions;
+    QGroupBox* fileView;
 
 public:
     startview();
@@ -29,6 +32,7 @@ public:
     void deleteView();
     QLayout* createButtonsLayout();
     QLayout* createVerticalLayout();
+    void createFileLayout();
     void userInput(chartTypes);
 public slots:
     void createPie();

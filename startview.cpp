@@ -7,10 +7,11 @@ startview::startview() {
     mainLayout->setMargin(0);
 
     mainLayout->addLayout(createVerticalLayout());
+    //mainLayout->addLayout(createFileLayout());
     mainLayout->addLayout(createButtonsLayout());
 
     setLayout(mainLayout);
-    resize(QSize(1024,1024));
+    resize(QSize(1024,768));
 
 }
 
@@ -35,60 +36,11 @@ void startview::deleteView(){
 
 QLayout* startview::createButtonsLayout(){
 
-    /**QHBoxLayout* buttonsLayout = new QHBoxLayout;
-
-    buttonsLayout->setMargin(10);
-    buttonsLayout->setSpacing(50);
-    buttonsLayout->setContentsMargins(30,50,12,50);
-    buttonsLayout->setAlignment(Qt::AlignCenter);
-
-   // QPushButton* newProject = new QPushButton("Nuovo Progetto",this);
-   // QPushButton* openProject = new QPushButton("Apri Progetto",this);
-
-    //newProject->setFixedSize(200,75);
-    //openProject->setFixedSize(200,75);
-
-    //buttonsLayout->addWidget(newProject);
-    //buttonsLayout->addWidget(openProject);
-
-    QLabel *label = new QLabel(this);
-    label->move( 5, 5);
-    label->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-    label->setText("Modifica Dati (inserimento)\n");
-    label->setAlignment(Qt::AlignBottom | Qt::AlignCenter);
-    label->setGeometry(5, 5, 200, 50);
-
-//per l'incapsulamento sarebbe bello fare una dimensione std e richiamare quella come il proj del mio friend
-    //
-    QPushButton *pie_button = new QPushButton("&Pie", this);
-    pie_button->setGeometry(5, 700, 150, 50);
-    pie_button->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Expanding);
-    //connect(pie_button, &QPushButton::released, this, &MainWindow::handleButton);
-
-    QPushButton *line_button = new QPushButton("&Line", this);
-    line_button->setGeometry(150, 700, 150, 50);
-    line_button->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Expanding);
-
-    QPushButton *bar_button = new QPushButton("&Bar", this);
-    bar_button->setGeometry(300, 700, 150, 50);
-    bar_button->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Expanding);
-
-    QPushButton *spline_button = new QPushButton("&Spline", this);
-    spline_button->setGeometry(450, 700, 150, 50);
-    spline_button->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Expanding);
-
-    QPushButton *scatter_button = new QPushButton("&Scatter", this);
-    scatter_button->setGeometry(600, 700, 150, 50);
-    scatter_button->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Expanding);
-//da provare un adjust to page, i punti così stanno fissi
-    return buttonsLayout;
-**/
-
 
     QDockWidget* dock=new QDockWidget(this);
     dock->setTitleBarWidget(new QWidget());
     dock->setAllowedAreas(Qt::BottomDockWidgetArea);
-    dock->setFixedSize(1024,256);
+    dock->setFixedSize(1024,64);
 
     QWidget* DockWidget = new QWidget(dock);
 
@@ -132,8 +84,8 @@ QLayout* startview::createVerticalLayout(){
     dockV->setFixedSize(512,768);
 
     QWidget* DockWidgetV = new QWidget(dockV);
-    //QVBoxLayout* layout=new QVBoxLayout(DockWidgetV);
-    QBoxLayout* layout=new QBoxLayout(QBoxLayout::TopToBottom,DockWidgetV);
+    QVBoxLayout* layout=new QVBoxLayout(DockWidgetV);
+    //QBoxLayout* layout=new QBoxLayout(QBoxLayout::TopToBottom,DockWidgetV);
 
     userActions=new QWidget(DockWidgetV);
     QVBoxLayout* VLayout=new QVBoxLayout(userActions);
@@ -145,19 +97,33 @@ QLayout* startview::createVerticalLayout(){
     dockV->setWidget(DockWidgetV);
     dockV->setFeatures(QDockWidget::NoDockWidgetFeatures);
     addDockWidget(Qt::LeftDockWidgetArea,dockV);
-    QButtonGroup* saveOpen=new QButtonGroup(dockV);
-    QPushButton *save = new QPushButton("&Save", DockWidgetV);
-    QPushButton *open = new QPushButton("&Open", DockWidgetV);
-    QPushButton *saveas = new QPushButton("&Save as", DockWidgetV);
-   //aggiunto i bottoni, pensavo di sistemarli con la classe di button group che sta nel layout che hai fatto tu di base
-    //ma non si mette nella parte giusta
-    //forse da aggiustare
-    //ci penso domani
-    saveOpen->addButton(save);
-    saveOpen->addButton(open);
-    saveOpen->addButton(saveas);
 
-    return(layout);
+    return layout;
+
+}
+
+void startview::createFileLayout(){
+
+    fileView=new QGroupBox(userActions);
+
+    QPushButton* FileOpenButton=new QPushButton("Save",userActions);
+    connect(FileOpenButton,SIGNAL(clicked(bool)),this,SLOT(OpenFileDialogue()));
+
+    QPushButton* FileSaveNewButton=new QPushButton("Open",userActions);
+    connect(FileSaveNewButton,SIGNAL(clicked(bool)),this,SLOT(SaveFileDialogue()));
+
+    QPushButton* FileSavetoCurrentButton=new QPushButton(tr("Save as"),userActions);
+    connect(FileSavetoCurrentButton,SIGNAL(clicked(bool)),this,SLOT(SavetoCurrent()));
+
+
+    QHBoxLayout* FileH=new QHBoxLayout(fileView);
+    FileH->addWidget(FileOpenButton);
+    FileH->addWidget(FileSaveNewButton);
+    FileH->addWidget(FileSavetoCurrentButton);
+
+    userActions->layout()->addWidget(fileView);
+
+    //return userActions;
 
 }
 
@@ -171,6 +137,7 @@ void startview::createPie(){
     label1->setText("1\n");
     setCentralWidget(label1);
     userInput(pie);
+    createFileLayout();
 
 }
 void startview::createLine(){
