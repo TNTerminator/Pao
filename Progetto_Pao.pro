@@ -12,29 +12,35 @@ CONFIG += c++11
 
 SOURCES += \
     barchart.cpp \
+    barmodel.cpp \
     basechart.cpp \
     linechart.cpp \
+    linemodel.cpp \
     main.cpp \
     mainwindow.cpp \
-    model.cpp \
     piechart.cpp \
+    piemodel.cpp \
     scatterchart.cpp \
+    scattermodel.cpp \
     splinechart.cpp \
+    splinemodel.cpp \
     startview.cpp \
-    view.cpp \
     userinputs.cpp
 
 HEADERS += \
     barchart.h \
+    barmodel.h \
     basechart.h \
     linechart.h \
+    linemodel.h \
     mainwindow.h \
-    model.h \
     piechart.h \
+    piemodel.h \
     scatterchart.h \
+    scattermodel.h \
     splinechart.h \
+    splinemodel.h \
     startview.h \
-    view.h \
     userinputs.h
 
 # Default rules for deployment.

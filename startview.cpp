@@ -36,7 +36,6 @@ void startview::deleteView(){
 
 QLayout* startview::createButtonsLayout(){
 
-
     QDockWidget* dock=new QDockWidget(this);
     dock->setTitleBarWidget(new QWidget());
     dock->setAllowedAreas(Qt::BottomDockWidgetArea);
@@ -107,13 +106,13 @@ void startview::createFileLayout(){
     fileView=new QGroupBox(userActions);
 
     QPushButton* FileOpenButton=new QPushButton("Save",userActions);
-    connect(FileOpenButton,SIGNAL(clicked(bool)),this,SLOT(OpenFileDialogue()));
+    //connect(FileOpenButton,SIGNAL(clicked(bool)),this,SLOT(OpenFileDialogue()));
 
     QPushButton* FileSaveNewButton=new QPushButton("Open",userActions);
-    connect(FileSaveNewButton,SIGNAL(clicked(bool)),this,SLOT(SaveFileDialogue()));
+    //connect(FileSaveNewButton,SIGNAL(clicked(bool)),this,SLOT(SaveFileDialogue()));
 
     QPushButton* FileSavetoCurrentButton=new QPushButton(tr("Save as"),userActions);
-    connect(FileSavetoCurrentButton,SIGNAL(clicked(bool)),this,SLOT(SavetoCurrent()));
+    //connect(FileSavetoCurrentButton,SIGNAL(clicked(bool)),this,SLOT(SavetoCurrent()));
 
 
     QHBoxLayout* FileH=new QHBoxLayout(fileView);
@@ -122,8 +121,6 @@ void startview::createFileLayout(){
     FileH->addWidget(FileSavetoCurrentButton);
 
     userActions->layout()->addWidget(fileView);
-
-    //return userActions;
 
 }
 

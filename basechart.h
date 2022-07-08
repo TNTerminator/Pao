@@ -4,7 +4,13 @@
 #include <QtCharts>
 
 class baseChart : public QtCharts::QChart{
+private:
+    QString chartName;
+    QtCharts::QChartView* chartView;
 public:
+    QtCharts::QChartView* getChartView() const;
+    QString getChartName() const;
+    virtual ~baseChart();
     baseChart();
 };
 
