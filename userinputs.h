@@ -3,15 +3,42 @@
 
 #include <QObject>
 #include <QDockWidget>
-#include <QTableView>
+#include <QGroupBox>
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QLineEdit>
+#include <QDoubleValidator>
+
+#include "piechart.h"
+#include "barchart.h"
+#include "splinechart.h"
+#include "linechart.h"
+#include "scatterchart.h"
 
 enum chartTypes{pie, line, bar, spline, scatter};
-class userinputs : public QTableView{
+class userinputs : public QGroupBox{
 
     Q_OBJECT
 
+private:
+
+    QLineEdit* firstData;
+    QLineEdit* secondData;
+    QLineEdit* thirdData;
+    chartTypes tipo;
+    //QString* type;
+
 public:
+
     userinputs(chartTypes, QWidget* p =nullptr);
+    QStringList getData() const;
+    chartTypes getTipo() const;
+
+signals:
+
+    void insertData();
+    void removeData();
+
 };
 
 #endif // USERINPUTS_H

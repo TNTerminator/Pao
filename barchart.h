@@ -3,7 +3,7 @@
 
 #include "barmodel.h"
 
-class barchart:public baseChart{
+class barchart: public baseChart{
 private:
     barmodel* model;
     void Draw();

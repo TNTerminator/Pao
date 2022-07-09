@@ -16,7 +16,6 @@ public:
     QtCharts::QChartView* getChartView() const;
     QString getChartName() const;
     virtual ~baseChart();
-    baseChart();
     virtual bool ImportFromFile(const QString&)=0;
     virtual bool SaveFile(const QString &)=0;
     virtual void AddtoChart(const QStringList&)=0;

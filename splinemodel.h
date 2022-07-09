@@ -1,6 +1,7 @@
 #ifndef SPLINEMODEL_H
 #define SPLINEMODEL_H
 
+#include "basechart.h"
 
 class splinemodel
 {

@@ -48,10 +48,10 @@ bool piemodel::SaveFile(const QString &FileName){
     return true;
 }
 
-void piemodel::AddtoChart(const QStringList& SL){
-    QString lable=SL.first();
-    qreal value=SL.last().toDouble();
-    PieSeries->append(lable,value);
+void piemodel::AddtoChart(const QStringList& SList){
+    QString label=SList.first();
+    qreal value=SList.last().toDouble();
+    PieSeries->append(label,value);
 }
 
 bool piemodel::RemovefromChart(const QStringList& SL){

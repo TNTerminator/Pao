@@ -2,6 +2,7 @@
 #define PIEMODEL_H
 
 #include "basechart.h"
+
 class piemodel{
 private:
     QPieSeries* PieSeries;

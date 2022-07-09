@@ -11,6 +11,7 @@
 #include <QButtonGroup>
 #include <QList>
 #include <QGroupBox>
+#include <QMessageBox>
 
 #include "basechart.h"
 #include "userinputs.h"
@@ -27,19 +28,22 @@ private:
     QGroupBox* fileView;
 
 public:
+
     startview();
 
-    void deleteView();
     QLayout* createButtonsLayout();
     QLayout* createVerticalLayout();
     void createFileLayout();
     void userInput(chartTypes);
+
 public slots:
     void createPie();
     void createLine();
     void createBar();
     void createSpline();
     void createScatter();
+    void addData();
+    void deleteData();
 };
 
 

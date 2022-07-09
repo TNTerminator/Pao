@@ -1,9 +1,5 @@
 #include "basechart.h"
 
-baseChart::baseChart() {   
-
-}
-
 QString baseChart::getChartName() const{
     return chartName;
 }

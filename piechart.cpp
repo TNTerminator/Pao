@@ -21,7 +21,6 @@ bool piechart::ImportFromFile(const QString& FileName){
     }
 }
 
-
 bool piechart::SaveFile(const QString &FileName){
     return model->SaveFile(FileName);
 }
@@ -35,9 +34,9 @@ void piechart::Draw(){
     addSeries(model->getPieSeries());
 }
 
-void piechart::AddtoChart(const QStringList& SL){ //cos'è sl?
-    if(!SL.first().isEmpty() && !SL.last().isEmpty()){
-        model->AddtoChart(SL);
+void piechart::AddtoChart(const QStringList& SList){ //cos'è sl?
+    if(!SList.first().isEmpty() && !SList.last().isEmpty()){
+        model->AddtoChart(SList);
     }
 }
 

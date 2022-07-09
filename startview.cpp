@@ -15,25 +15,6 @@ startview::startview() {
 
 }
 
-void startview::deleteView(){
-    /**if(chart != nullptr){
-        delete chart;
-        chart = nullptr;
-    }
-    if(userIn != nullptr){
-        delete userIn;
-        userIn = nullptr;
-    }
-    if(userActions != nullptr){
-        delete userActions;
-        userActions = nullptr;
-    }
-    if(fileInteraction != nullptr){
-     * delete fileInteraction;
-     * fileInteraction = nullptr;
-    }**/
-}
-
 QLayout* startview::createButtonsLayout(){
 
     QDockWidget* dock=new QDockWidget(this);
@@ -84,12 +65,10 @@ QLayout* startview::createVerticalLayout(){
 
     QWidget* DockWidgetV = new QWidget(dockV);
     QVBoxLayout* layout=new QVBoxLayout(DockWidgetV);
-    //QBoxLayout* layout=new QBoxLayout(QBoxLayout::TopToBottom,DockWidgetV);
 
     userActions=new QWidget(DockWidgetV);
     QVBoxLayout* VLayout=new QVBoxLayout(userActions);
     userActions->setLayout(VLayout);
-    //VLayout->setAlignment(Qt::AlignTop);
 
     layout->addWidget(userActions);
 
@@ -103,7 +82,7 @@ QLayout* startview::createVerticalLayout(){
 
 void startview::createFileLayout(){
 
-    fileView=new QGroupBox(userActions);
+    fileView=new QGroupBox("File Action",userActions);
 
     QPushButton* FileOpenButton=new QPushButton("Save",userActions);
     //connect(FileOpenButton,SIGNAL(clicked(bool)),this,SLOT(OpenFileDialogue()));
@@ -127,21 +106,28 @@ void startview::createFileLayout(){
 void startview::userInput(chartTypes type){
     userIn = new userinputs(type, userActions);
     userActions->layout()->addWidget(userIn);
+
+    connect(userIn,SIGNAL(insertData()),this,SLOT(addData()));
+    connect(userIn,SIGNAL(removeData()),this,SLOT(deleteData()));
 }
 
 void startview::createPie(){
-    QLabel *label1 = new QLabel(this);
-    label1->setText("1\n");
-    setCentralWidget(label1);
-    userInput(pie);
-    createFileLayout();
 
+    if(userIn->getTipo()!=pie){
+        chart = new piechart();
+        setCentralWidget(chart->getChartView());
+        userInput(pie);
+        createFileLayout();
+    }
 }
 void startview::createLine(){
 
-    QLabel *label2 = new QLabel(this);
-    label2->setText("2\n");
-    setCentralWidget(label2);
+    if(userIn->getTipo()!=line){
+        chart = new linechart();
+        setCentralWidget(chart->getChartView());
+        userInput(line);
+        createFileLayout();
+    }
 
 }
 void startview::createBar(){
@@ -164,4 +150,16 @@ void startview::createScatter(){
     label5->setText("5\n");
     setCentralWidget(label5);
 
+}
+
+void startview::addData(){
+    if(userIn->getTipo()==pie){
+        if(!chart->RemovefromChart(userIn->getData())){chart->AddtoChart(userIn->getData());}
+        else {chart->AddtoChart(userIn->getData());}
+    }
+    else{chart->AddtoChart(userIn->getData());}
+}
+
+void startview::deleteData(){
+    if(!chart->RemovefromChart(userIn->getData())){QMessageBox::warning(this,"Error","No match found",QMessageBox::Ok);}
 }

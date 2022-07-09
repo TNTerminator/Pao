@@ -1,7 +1,7 @@
 #ifndef BARMODEL_H
 #define BARMODEL_H
 
-#include "piechart.h" //cosa includiamo?
+#include "basechart.h" //cosa includiamo?
 
 class barmodel{
 private:
