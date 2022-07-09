@@ -1,7 +1,7 @@
 #ifndef LINEMODEL_H
 #define LINEMODEL_H
 
-#include "basechart.h"
+#include "piechart.h"
 
 class linemodel{
 private:

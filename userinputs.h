@@ -9,10 +9,6 @@
 #include <QLineEdit>
 #include <QDoubleValidator>
 
-#include "piechart.h"
-#include "barchart.h"
-#include "splinechart.h"
-#include "linechart.h"
 #include "scatterchart.h"
 
 enum chartTypes{pie, line, bar, spline, scatter};
@@ -26,6 +22,7 @@ private:
     QLineEdit* secondData;
     QLineEdit* thirdData;
     chartTypes tipo;
+    //QVBoxLayout* dataV;
     //QString* type;
 
 public:
@@ -33,6 +30,8 @@ public:
     userinputs(chartTypes, QWidget* p =nullptr);
     QStringList getData() const;
     chartTypes getTipo() const;
+    void deleteInputs();
+    ~userinputs();
 
 signals:
 

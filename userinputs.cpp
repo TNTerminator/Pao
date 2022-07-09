@@ -58,7 +58,6 @@ userinputs::userinputs(chartTypes type, QWidget* parent): firstData(nullptr), se
     dataV->addWidget(deleteValue);
     dataV->setSpacing(20);
 
-
 }
 
 QStringList userinputs::getData() const{
@@ -76,3 +75,4 @@ QStringList userinputs::getData() const{
 chartTypes userinputs::getTipo() const{
     return tipo;
 }
+

@@ -26,6 +26,8 @@ private:
     userinputs* userIn;
     QWidget* userActions;
     QGroupBox* fileView;
+    QHBoxLayout* FileH;
+
 
 public:
 

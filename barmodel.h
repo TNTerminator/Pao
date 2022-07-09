@@ -1,8 +1,7 @@
 #ifndef BARMODEL_H
 #define BARMODEL_H
 
-#include "basechart.h" //cosa includiamo?
-
+#include "linechart.h"
 class barmodel{
 private:
     QBarCategoryAxis* CAxis;

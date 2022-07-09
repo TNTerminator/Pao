@@ -1,7 +1,7 @@
 #ifndef SCATTERMODEL_H
 #define SCATTERMODEL_H
 
-#include "basechart.h"
+#include "splinechart.h"
 
 class scattermodel
 {

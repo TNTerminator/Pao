@@ -7,8 +7,9 @@ startview::startview() {
     mainLayout->setMargin(0);
 
     mainLayout->addLayout(createVerticalLayout());
-    //mainLayout->addLayout(createFileLayout());
     mainLayout->addLayout(createButtonsLayout());
+
+    createFileLayout();
 
     setLayout(mainLayout);
     resize(QSize(1024,768));
@@ -104,6 +105,7 @@ void startview::createFileLayout(){
 }
 
 void startview::userInput(chartTypes type){
+
     userIn = new userinputs(type, userActions);
     userActions->layout()->addWidget(userIn);
 
@@ -113,21 +115,18 @@ void startview::userInput(chartTypes type){
 
 void startview::createPie(){
 
-    if(userIn->getTipo()!=pie){
-        chart = new piechart();
-        setCentralWidget(chart->getChartView());
-        userInput(pie);
-        createFileLayout();
-    }
+    userActions->layout()->removeWidget(userIn);
+    chart = new piechart();
+    setCentralWidget(chart->getChartView());
+    userInput(pie);
+
 }
 void startview::createLine(){
 
-    if(userIn->getTipo()!=line){
-        chart = new linechart();
-        setCentralWidget(chart->getChartView());
-        userInput(line);
-        createFileLayout();
-    }
+    userActions->layout()->removeWidget(userIn);
+    chart = new linechart();
+    setCentralWidget(chart->getChartView());
+    userInput(line);
 
 }
 void startview::createBar(){
