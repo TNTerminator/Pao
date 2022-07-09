@@ -13,14 +13,14 @@ barchart::barchart():baseChart(),model(new barmodel()){
 
 bool barchart::ImportFromFile(const QString& FileName){
     Clear();
-    if(model->ImportFromFile(FileName)){chartName=FileName;}
+    if(model->ImportFromFile(FileName)){savedFileName=FileName;}
     else {Clear(); return false;}
     Draw();
     return true;
 }
 
 bool barchart::SaveFile(const QString &FileName){
-    if(model->SaveFile(FileName)) {chartName=FileName; return true;}
+    if(model->SaveFile(FileName)) {savedFileName=FileName; return true;}
     return false;
 }
 

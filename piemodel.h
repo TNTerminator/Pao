@@ -9,10 +9,10 @@ private:
 public:
     piemodel();
     QPieSeries* getPieSeries() const;
-    bool ImportFromFile(const QString&);
-    bool SaveFile(const QString &);
-    void AddtoChart(const QStringList&);
-    bool RemovefromChart(const QStringList&);
+    virtual bool ImportFromFile(const QString&);
+    virtual bool SaveFile(const QString &);
+    virtual void AddtoChart(const QStringList&);
+    virtual bool RemovefromChart(const QStringList&);
 };
 
 #endif // PIEMODEL_H

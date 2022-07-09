@@ -1,7 +1,7 @@
 #include "basechart.h"
 
-QString baseChart::getChartName() const{
-    return chartName;
+QString baseChart::getSavedFileName() const{
+    return savedFileName;
 }
 
 baseChart::~baseChart(){

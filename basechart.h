@@ -10,11 +10,11 @@
 
 class baseChart : public QtCharts::QChart{
 protected:
-    QString chartName;
+    QString savedFileName;
     QtCharts::QChartView* chartView;
 public:
     QtCharts::QChartView* getChartView() const;
-    QString getChartName() const;
+    QString getSavedFileName() const;
     virtual ~baseChart();
     virtual bool ImportFromFile(const QString&)=0;
     virtual bool SaveFile(const QString &)=0;

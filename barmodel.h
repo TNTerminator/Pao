@@ -18,10 +18,10 @@ public:
     QList<QBarSet*>* BarSets() const;
     QBarSeries* BarSeries() const;
     QBarCategoryAxis* CategoryAxis() const;
-    bool ImportFromFile(const QString& FileName);
-    bool SaveFile(const QString &FileName);
-    void AddtoModel(const QStringList& SL);
-    bool RemovefromModel(const QStringList& SL);
+    virtual bool ImportFromFile(const QString& FileName);
+    virtual bool SaveFile(const QString &FileName);
+    virtual void AddtoModel(const QStringList& SL);
+    virtual bool RemovefromModel(const QStringList& SL);
 };
 
 #endif // BARMODEL_H

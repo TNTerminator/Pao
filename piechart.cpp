@@ -15,7 +15,7 @@ bool piechart::ImportFromFile(const QString& FileName){
         return false;
     }
     else{
-        chartName=FileName;
+        savedFileName=FileName;
         Draw();
         return true;
     }

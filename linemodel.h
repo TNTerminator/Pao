@@ -9,10 +9,10 @@ private:
 public:
     linemodel();
     QLineSeries* GetLineSeries() const;
-    bool ImportFromFile(const QString& FileName);
-    bool SaveFile(const QString &FileName);
-    void AddtoChart(const QStringList& SL);
-    bool RemovefromChart(const QStringList& SL);
+    virtual bool ImportFromFile(const QString& FileName);
+    virtual bool SaveFile(const QString &FileName);
+    virtual void AddtoChart(const QStringList& SL);
+    virtual bool RemovefromChart(const QStringList& SL);
 };
 
 #endif // LINEMODEL_H

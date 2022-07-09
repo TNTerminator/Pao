@@ -8,6 +8,7 @@ QPieSeries* piemodel::getPieSeries() const {
     return PieSeries;
 }
 
+
 bool piemodel::ImportFromFile(const QString& FileName){
     QFile file(FileName);
     if (!file.open(QIODevice::ReadOnly)) {

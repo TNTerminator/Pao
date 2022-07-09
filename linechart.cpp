@@ -12,12 +12,12 @@ linechart::linechart():baseChart(),model(new linemodel()){
 
 bool linechart::ImportFromFile(const QString& FileName){
     Clear();
-    if(model->ImportFromFile(FileName)) {chartName=FileName;Draw(); return true;}
+    if(model->ImportFromFile(FileName)) {savedFileName=FileName;Draw(); return true;}
     else{model->GetLineSeries()->clear();Draw();return false;}
 }
 
 bool linechart::SaveFile(const QString &FileName){
-    if(model->SaveFile(FileName)){chartName=FileName;return false;}
+    if(model->SaveFile(FileName)){savedFileName=FileName;return false;}
     else{return false;}
 }
 

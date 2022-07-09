@@ -31,7 +31,6 @@ public:
     QStringList getData() const;
     chartTypes getTipo() const;
     void deleteInputs();
-    ~userinputs();
 
 signals:
 

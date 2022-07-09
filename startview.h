@@ -21,12 +21,12 @@ class startview :public QMainWindow{
     Q_OBJECT
 
 private:
-
+    QVBoxLayout* mainLayout;
     baseChart* chart;
     userinputs* userIn;
     QWidget* userActions;
     QGroupBox* fileView;
-    QHBoxLayout* FileH;
+    //QHBoxLayout* FileH;
 
 
 public:
@@ -39,6 +39,9 @@ public:
     void userInput(chartTypes);
 
 public slots:
+    void openFile() const;
+    void saveFile() const;
+    void saveAsFile() const;
     void createPie();
     void createLine();
     void createBar();

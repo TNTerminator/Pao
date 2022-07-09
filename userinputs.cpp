@@ -27,6 +27,7 @@ userinputs::userinputs(chartTypes type, QWidget* parent): firstData(nullptr), se
 
     switch(type){
         case pie:
+            //setTitle("Pie Chart");
             firstData->setPlaceholderText("name");
             firstData->setAlignment(Qt::AlignLeft);
 
@@ -38,16 +39,62 @@ userinputs::userinputs(chartTypes type, QWidget* parent): firstData(nullptr), se
             deleteValue->setText("Remove Data");
         break;
         case line:
+            //setTitle("Line Chart");
             firstData->setPlaceholderText("x");
-            firstData->setAlignment(Qt::AlignLeft);
             firstData->setValidator(new QDoubleValidator(-999.0, 999.0, 2, firstData));
+            firstData->setAlignment(Qt::AlignLeft);
 
             secondData->setPlaceholderText("y");
-            secondData->setAlignment(Qt::AlignLeft);
             secondData->setValidator(new QDoubleValidator(-999.0, 999.0, 2, secondData));
+            secondData->setAlignment(Qt::AlignLeft);
 
             insertValue->setText("Add point");
             deleteValue->setText("Remove point");
+        break;
+        case bar:
+            //settitle("Bar chart");
+            firstData->setPlaceholderText("category");
+            firstData->setAlignment(Qt::AlignLeft);
+
+            secondData->setPlaceholderText("Bar set");
+            secondData->setAlignment(Qt::AlignLeft);
+
+            thirdData = new QLineEdit(parent);
+            thirdData->setPlaceholderText("value");
+            thirdData->setValidator(new QDoubleValidator(0.0, 999.0, 2, secondData));
+            thirdData->setAlignment(Qt::AlignLeft);
+
+            dataInsert->addWidget(thirdData);
+
+            insertValue->setText("Add Bar");
+            deleteValue->setText("Remove Bar");
+
+        break;
+        case spline:
+            firstData->setPlaceholderText("x");
+            firstData->setValidator(new QDoubleValidator(-999.0, 999.0, 2, firstData));
+            firstData->setAlignment(Qt::AlignLeft);
+
+            secondData->setPlaceholderText("y");
+            secondData->setValidator(new QDoubleValidator(999.0, 999.0, 2, secondData));
+            secondData->setAlignment(Qt::AlignLeft);
+
+            insertValue->setText("Add point");
+            deleteValue->setText("Remove point");
+        break;
+        case scatter:
+            firstData->setPlaceholderText("x");
+            firstData->setValidator(new QDoubleValidator(-999.0, 999.0, 2, firstData));
+            firstData->setAlignment(Qt::AlignLeft);
+
+            secondData->setPlaceholderText("y");
+            secondData->setValidator(new QDoubleValidator(999.0, 999.0, 2, secondData));
+            secondData->setAlignment(Qt::AlignLeft);
+
+            insertValue->setText("Add point");
+            deleteValue->setText("Remove point");
+        break;
+
     }
 
     connect(insertValue,SIGNAL(clicked(bool)),this,SIGNAL(insertData()));

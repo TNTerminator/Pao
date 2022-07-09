@@ -2,7 +2,7 @@
 
 startview::startview() {
 
-    QVBoxLayout* mainLayout = new QVBoxLayout;
+    mainLayout = new QVBoxLayout;
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
 
@@ -13,6 +13,8 @@ startview::startview() {
 
     setLayout(mainLayout);
     resize(QSize(1024,768));
+
+    createPie();
 
 }
 
@@ -85,20 +87,20 @@ void startview::createFileLayout(){
 
     fileView=new QGroupBox("File Action",userActions);
 
-    QPushButton* FileOpenButton=new QPushButton("Save",userActions);
-    //connect(FileOpenButton,SIGNAL(clicked(bool)),this,SLOT(OpenFileDialogue()));
+    QPushButton* openButton=new QPushButton("Open",userActions);
+    connect(openButton,SIGNAL(clicked(bool)),this,SLOT(openFile()));
 
-    QPushButton* FileSaveNewButton=new QPushButton("Open",userActions);
-    //connect(FileSaveNewButton,SIGNAL(clicked(bool)),this,SLOT(SaveFileDialogue()));
+    QPushButton* saveButton=new QPushButton("Save",userActions);
+    connect(saveButton,SIGNAL(clicked(bool)),this,SLOT(saveFile()));
 
-    QPushButton* FileSavetoCurrentButton=new QPushButton(tr("Save as"),userActions);
-    //connect(FileSavetoCurrentButton,SIGNAL(clicked(bool)),this,SLOT(SavetoCurrent()));
+    QPushButton* saveAsButton=new QPushButton(tr("Save as"),userActions);
+    connect(saveAsButton,SIGNAL(clicked(bool)),this,SLOT(saveAsFile()));
 
 
     QHBoxLayout* FileH=new QHBoxLayout(fileView);
-    FileH->addWidget(FileOpenButton);
-    FileH->addWidget(FileSaveNewButton);
-    FileH->addWidget(FileSavetoCurrentButton);
+    FileH->addWidget(openButton);
+    FileH->addWidget(saveButton);
+    FileH->addWidget(saveAsButton);
 
     userActions->layout()->addWidget(fileView);
 
@@ -111,6 +113,31 @@ void startview::userInput(chartTypes type){
 
     connect(userIn,SIGNAL(insertData()),this,SLOT(addData()));
     connect(userIn,SIGNAL(removeData()),this,SLOT(deleteData()));
+}
+
+void startview::openFile() const{
+
+    QString fileName = QFileDialog::getOpenFileName(fileView,"Open csv file", "/home","Chart files(*.csv)");
+    if(!chart->ImportFromFile(fileName)){
+        QMessageBox::warning(userIn,"Error","Didn't select a file",QMessageBox::Ok); //testare
+    }
+
+}
+
+void startview::saveFile() const{
+
+    if(chart->SaveFile(chart->getSavedFileName())){
+        QMessageBox::warning(userIn,"Error","Save Completed",QMessageBox::Ok);
+    }
+}
+
+void startview::saveAsFile() const{
+
+    QString fileName=QFileDialog::getSaveFileName(fileView,"Save as csv file", "/home","Chart files(*.csv)");
+    if(chart->SaveFile(fileName)){
+        QMessageBox::warning(userIn,"Error","Save Completed",QMessageBox::Ok);
+    }//testare
+
 }
 
 void startview::createPie(){
@@ -131,23 +158,26 @@ void startview::createLine(){
 }
 void startview::createBar(){
 
-    QLabel *label3 = new QLabel(this);
-    label3->setText("3\n");
-    setCentralWidget(label3);
+    userActions->layout()->removeWidget(userIn);
+    chart = new barchart();
+    setCentralWidget(chart->getChartView());
+    userInput(bar);
 
 }
 void startview::createSpline(){
 
-    QLabel *label4 = new QLabel(this);
-    label4->setText("4\n");
-    setCentralWidget(label4);
+    userActions->layout()->removeWidget(userIn);
+    chart = new splinechart();
+    setCentralWidget(chart->getChartView());
+    userInput(spline);
 
 }
 void startview::createScatter(){
 
-    QLabel *label5 = new QLabel(this);
-    label5->setText("5\n");
-    setCentralWidget(label5);
+    userActions->layout()->removeWidget(userIn);
+    chart = new scatterchart();
+    setCentralWidget(chart->getChartView());
+    userInput(scatter );
 
 }
 
